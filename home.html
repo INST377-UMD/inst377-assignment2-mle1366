@@ -1,0 +1,103 @@
+<!--Home Page -->
+
+<html>
+
+<head>
+    <title>INST377 - Assignment 2 - Home</title>
+    <link rel="stylesheet" href="A2.css">
+    <script type="text/javascript" src="A2.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1><b>INST377 - Activities</b></h1>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav id="main-nav">
+        <a href="home.html" class="home">Home</a>
+        <a href="stocks.html" class="stocks">Stocks</a>
+        <a href="dogs.html" class="dogs">Dogs</a>
+    </nav>
+
+    <!-- Main Text Area -->
+    <h1>These are some different activities we can try!</h1>
+
+    <div class="main-container">
+        <div class=buttons>
+            <button class="cool-button" role="button" onclick="window.location.href = 'stocks.html';">Stocks</button>
+            <button class="cool-button" role="button" onclick="window.location.href = 'dogs.html';">Dogs</button>
+        </div>
+
+
+        <!-- Random Quotes -->
+        <div class="content-box" id="quote-box">
+            <h2>Quote of the Page Load</h2>
+            <p id="quote"></p>
+        </div>
+
+
+        <!-- Voice Command Instructions-->
+        <div class="content-box" id="voice-box">
+            <h2>In this web page there are options to Navigate using Audio!</h2>
+            <p>Ensure your Mic is enabled to be able to use this feature</p>
+
+            <ul>
+                <li>Navigate to a Different Page
+                    <ul>
+                        <li>Say: <b>Navigate to &lt;page&gt;</b></li>
+                    </ul>
+                </li>
+
+                <li>Change the Page Color
+                    <ul>
+                        <li>Say: <b>Change the color to &lt;color&gt;</b></li>
+                    </ul>
+                </li>
+                <li>Say Hello Back to you!
+                    <ul>
+                        <li>Say: <b>Hello</b></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class=buttons>
+                <button class="audio-button" role="button" onclick=annyang.start();>Turn On Listening</button>
+                <button class="audio-button" role="button" onclick=annyang.abort();>Turn Off Listening</button>
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+
+    <script>
+        const pages = {
+            'home': 'home.html',
+            'stocks': 'stocks.html',
+            'dogs': 'dogs.html'
+        };
+
+        const commands = {
+            'Navigate to :page': function (page) {
+                const url = pages[page.toLowerCase()];
+                window.location.href = url;
+            },
+            'Change the color to :color': function (color) {
+                document.body.style.backgroundColor = color;
+            },
+            'Say Hello': function () {
+                alert('Hello, World!');
+            }
+        };
+
+        annyang.addCommands(commands);
+
+    </script>
+
+</body>
+
+</html>
